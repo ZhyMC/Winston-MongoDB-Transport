@@ -36,7 +36,6 @@ class MTransport extends Transport{
 			sublabel:{ index:true ,default:"" },
 			timestamp:{ index: false ,default:new Date().getTime() }
 		}
-
 	}
 	async _workloop(){
 		assert(this.state=="connecting","at this state,_workloop can not start");
@@ -87,8 +86,8 @@ class MTransport extends Transport{
 			let log={
 				level:loginfo.level,
 				log:loginfo.message,
-				label:this.options.label,
-				sublabel:this.options.sublabel,
+				label:loginfo.label || this.options.label,
+				sublabel:loginfo.sublabel || this.options.sublabel,
 				timestamp
 			};
 			for(let s in model){
